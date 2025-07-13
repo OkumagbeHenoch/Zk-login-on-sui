@@ -11,7 +11,6 @@ export default function RegisterEnokiWallets() {
 			apiKey: import.meta.env.VITE_ENOKI_API_KEY,
 			providers: {
 				google: { clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID },
-				facebook: { clientId: 'YOUR_FACEBOOK_CLIENT_ID' },
 			},
 			client,
 			network,

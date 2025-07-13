@@ -29,8 +29,9 @@ export default function Login() {
 	}
 
 	return (
-		<div>
+		<div className='md:'>
 			<h1>Login</h1>
+			<br />
 			{googleWallet && (
 				<button onClick={() => connect({ wallet: googleWallet })}>
 					Sign in with Google
