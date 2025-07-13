@@ -22,7 +22,6 @@ export default function Login() {
 	);
 
 	const googleWallet = walletsByProvider.get('google');
-	const facebookWallet = walletsByProvider.get('facebook');
     console.log(currentAccount)
 	if (currentAccount) {
 		navigate('/');
@@ -37,11 +36,7 @@ export default function Login() {
 					Sign in with Google
 				</button>
 			)}
-			{facebookWallet && (
-				<button onClick={() => connect({ wallet: facebookWallet })}>
-					Sign in with Facebook
-				</button>
-			)}
+			
 		</div>
 	);
 }
