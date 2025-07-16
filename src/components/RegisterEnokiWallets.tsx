@@ -7,7 +7,7 @@ export default function RegisterEnokiWallets() {
 
 	useEffect(() => {
 		if (!isEnokiNetwork(network)) return;
-		const { unregister } = registerEnokiWallets({
+		const  {unregister}  = registerEnokiWallets({
 			apiKey: import.meta.env.VITE_ENOKI_API_KEY,
 			providers: {
 				google: { clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID },

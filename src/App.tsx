@@ -13,8 +13,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import './App.css'
 
-const { networkConfig } = createNetworkConfig({
-  testnet: { url: getFullnodeUrl('testnet') },
+const {networkConfig}  = createNetworkConfig({
+  testnet: { url: 'testnet' },
   mainnet: { url: getFullnodeUrl('mainnet') },
 });
 const queryClient = new QueryClient();

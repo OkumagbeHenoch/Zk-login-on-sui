@@ -29,8 +29,8 @@ export default function Login() {
 	}
 
 	return (
-		<div className='md:'>
-			<h1>Login</h1>
+		<div>
+			<h1>ZkLogin tryout</h1>
 			<br />
 			{googleWallet && (
 				<button onClick={() => connect({ wallet: googleWallet })}>
