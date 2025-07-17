@@ -3,6 +3,9 @@ import { Transaction } from '@mysten/sui/transactions';
 import { Link } from 'react-router-dom';
 import LogoutButton from '../components/Logout';
 import { SponsoredTxExecutor } from '../components/SponsorTx';
+import Balance from '../components/Balance';
+
+
 
 export default function Home() {
 	const currentAccount = useCurrentAccount();
@@ -33,7 +36,9 @@ export default function Home() {
 
 			{/* Sponsored Transaction Button */}
 			<SponsoredTxExecutor tx={tx}/>
+			<Balance/>
 			<LogoutButton />
+
 		</div>
 	);
 }
