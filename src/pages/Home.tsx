@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import LogoutButton from "../components/Logout";
 import Balance from "../components/Balance";
 import TransferSUI from "../components/Send";
+import "../App.css";
 
 export default function Home() {
   const currentAccount = useCurrentAccount();
@@ -23,18 +24,17 @@ export default function Home() {
     target: "",
     arguments: [],
   });
+return (
+  <div >
+    <h1 className="">
+      Welcome,<br />
+      <span className="">{currentAccount.address}</span>
+    </h1>
+    <Balance />
+    <TransferSUI />
+    <br/>
+    <LogoutButton />
+  </div>
+);
 
-  return (
-    <div>
-      <h1>
-        Welcome,
-        <br />
-        {currentAccount.address}
-      </h1>
-      <p>This is your home page.</p>
-      <Balance />
-      <TransferSUI />
-      <LogoutButton />
-    </div>
-  );
 }

@@ -9,6 +9,7 @@ import {
   type AuthProvider,
 } from "@mysten/enoki";
 import { useNavigate } from "react-router-dom";
+import '../App.css'
 
 export default function Login() {
   const currentAccount = useCurrentAccount();

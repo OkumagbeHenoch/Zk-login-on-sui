@@ -123,12 +123,12 @@ const TransferSUI = () => {
                 alert(`Transfer Success. Digest: ${txnRes.digest}`);
                 getBalance(zkloginaddress || "");
               } else {
-                console.error("Transaction failed or had non-success status:", txnRes);
-                alert("Transaction failed. Check console for details.");
+                console.error("Transaction failed or had non-success status:", txnRes)
+                 console.log("Transaction failed. Check console for details.");
               }
             } catch (execError) {
               console.error("Error executing signed transaction:", execError);
-              alert("Error executing signed transaction. Check console for details.");
+              console.log ("Error executing signed transaction. Check console for details.");
             } finally {
               setLoading(false);
             }
@@ -160,8 +160,9 @@ const TransferSUI = () => {
   return (
     <div>
       <h3>Transfer SUI (Testnet)</h3>
+
       <p>
-        Note: Please ensure your wallet on Testnet has sufficient SUI to cover the transfer and gas fees.
+        Note: Please ensure your wallet address on Testnet has received tokens from faucet to send out.
       </p>
       <div>
         <h4>Send SUI</h4>
@@ -177,7 +178,7 @@ const TransferSUI = () => {
           onClick={transferSUI}
           disabled={loading || !account || !client || !selectedCoinId || !recipientAddress}
         >
-          Transfer 0.2 SUI
+          Transfer 0.1 SUI
         </button>
         {loading && <div>Transferring...</div>}
       </div>
