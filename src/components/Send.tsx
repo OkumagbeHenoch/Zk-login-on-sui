@@ -60,17 +60,17 @@ const TransferSUI = () => {
 
   const transferSUI = async () => {
     if (!account || !client) {
-      alert("Wallet not connected or SuiClient not initialized. Please connect your wallet.");
+      console.log("Wallet not connected or SuiClient not initialized. Please connect your wallet.");
       setLoading(false);
       return;
     }
     if (!recipientAddress) {
-      alert("Please enter a recipient address.");
+      console.log("Please enter a recipient address.");
       setLoading(false);
       return;
     }
     if (!selectedCoinId) {
-      alert("Please select a SUI coin to send from.");
+      console.log("Please select a SUI coin to send from.");
       setLoading(false);
       return;
     }
@@ -120,7 +120,7 @@ const TransferSUI = () => {
 
               if (txnRes?.digest && txnRes.effects?.status.status === "success") {
                 setTxnDigest(txnRes.digest);
-                alert(`Transfer Success. Digest: ${txnRes.digest}`);
+                console.log(`Transfer Success. Digest: ${txnRes.digest}`);
                 getBalance(zkloginaddress || "");
               } else {
                 console.error("Transaction failed or had non-success status:", txnRes)
@@ -135,14 +135,14 @@ const TransferSUI = () => {
           },
           onError: err => {
             console.error("Error signing transaction:", err);
-            alert("Error signing transaction. Check console for details.");
+            console.log("Error signing transaction. Check console for details.");
             setLoading(false);
           },
         }
       );
     } catch (err) {
       console.error("Unexpected error preparing or building transaction:", err);
-      alert("Unexpected error preparing or building transaction. Check console for details.");
+      console.log("Unexpected error preparing or building transaction. Check console for details.");
       setLoading(false);
     }
   };
@@ -180,6 +180,18 @@ const TransferSUI = () => {
         >
           Transfer 0.1 SUI
         </button>
+         {txnDigest && (
+          <div>
+            Transaction Digest:{" "}
+            <a
+              href={`https://suiscan.xyz/testnet/tx/${txnDigest}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {txnDigest.substring(0, 20)}...
+            </a>
+          </div>
+        )}
         {loading && <div>Transferring...</div>}
       </div>
     </div>
