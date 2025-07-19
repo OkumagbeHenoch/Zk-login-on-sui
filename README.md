@@ -55,7 +55,8 @@ npm run dev  # starts Vite server on http://localhost:5173
 * [Sui API Reference](https://docs.sui.io/sui-api-ref)
 * [Enoki Portal](https://portal.enoki.mystenlabs.com)
 * [Sui Faucet](https://faucet.sui.io)
-* [Enoki ZK Login Tutorial Video] (https://youtu.be/gU1WOSF3jkU?si=OWmo9MpupSB7faRa)
+*[Enoki ZK Login Tutorial Video]
+(https://youtu.be/gU1WOSF3jkU?si=OWmo9MpupSB7faRa)
 ## License
 
 MIT
