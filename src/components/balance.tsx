@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useCurrentAccount } from "@mysten/dapp-kit";
 
 export default function Balance() {
-  // Grab the current wallet address (string) from the dapp-kit hook
   const account = useCurrentAccount();
   const zkloginaddress = account?.address;
 
-  const [coins, setCoins] = useState([]);
-  const [totalBalance, setTotalBalance] = useState(null);
-  const [error, setError] = useState(null);
+  const [coins, setCoins] = useState<any[]>([]);
+  const [totalBalance, setTotalBalance] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const url = "https://fullnode.testnet.sui.io:443";
+  const rpcurl = "https://fullnode.testnet.sui.io:443";
 
   useEffect(() => {
-    // Only attempt fetch when we have a valid string address
-    if (!zkloginaddress || typeof zkloginaddress !== "string") return;
+    if (!zkloginaddress) return;
 
     const body = {
       jsonrpc: "2.0",
@@ -23,10 +21,9 @@ export default function Balance() {
       params: [zkloginaddress],
     };
 
-    // Debug: log the exact JSON payload
     console.log("RPC Request:", JSON.stringify(body));
 
-    fetch(url, {
+    fetch(rpcurl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -34,7 +31,6 @@ export default function Balance() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          // Show RPC errors
           setError(`${data.error.code}: ${data.error.message}`);
           return;
         }
@@ -42,9 +38,8 @@ export default function Balance() {
         const coinData = data.result?.data || [];
         setCoins(coinData);
 
-        // Sum raw balances and convert to SUI
         const sumRaw = coinData.reduce(
-          (sum, coin) => sum + BigInt(coin.balance),
+          (sum: bigint, coin: any) => sum + BigInt(coin.balance),
           BigInt(0)
         );
         setTotalBalance(Number(sumRaw) / 1e9);
@@ -56,13 +51,14 @@ export default function Balance() {
   }, [zkloginaddress]);
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-2">Account Balance</h2>
-
-     
+    <div>
+      <h2>Account Balance</h2>
+      {error && <p>Error: {error}</p>}
+      {totalBalance !== null && (
         <div>
-          <p className="mb-4">Total SUI Balance: {totalBalance} SUI</p>
+          <p>Total SUI Balance: {totalBalance} SUI</p>
         </div>
+      )}
     </div>
   );
 }
